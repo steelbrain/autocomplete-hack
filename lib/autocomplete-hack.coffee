@@ -24,17 +24,19 @@ module.exports =
             Result = Result.stdout.split("\n").filter((e) -> e)
             ToReturn = Result.map((Entry)->
               Entry = Entry.split(' ')
-              if Entry[0].substr(0,1) is '$'
+              Text = Entry[0]
+              Label = Entry.slice(1).join(' ')
+              if Text.substr(0,1) is '$'
                 Type = 'variable'
-              else if Entry[0] is 'class' and Entry[1] is 'string'
+              else if Text is 'class' and Label is 'string'
                 Type = 'class'
               else
                 Type = 'property'
               return {
                 type: Type
-                text: Entry[0]
-                leftLabel: Entry[1]
-                score: prefix.length > 0 and Entry[0].score(prefix)
+                text: Text
+                leftLabel: Label
+                score: prefix.length > 0 and Text.score(prefix)
               }
             )
             ToReturn.sort (a,b)=>
