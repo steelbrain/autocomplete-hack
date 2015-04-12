@@ -2,11 +2,15 @@
   "name": "autocomplete-hack",
   "main": "./lib/autocomplete-hack",
   "version": "0.0.0",
-  "description": "A short description of your package",
-  "repository": "https://github.com/atom/autocomplete-hack",
+  "description": "HackLang AutoCompletion for Atom Editor.",
+  "repository": "https://github.com/steelbrain/autocomplete-hack",
+  "author": {
+    "username": "steelbrain",
+    "email": "aneesiqbalbhatti@gmail.com"
+  },
   "license": "MIT",
   "engines": {
-    "atom": ">=0.174.0 <2.0.0"
+    "atom": ">=0.188.0 <2.0.0"
   },
   "dependencies": {
     "node-ssh": "latest",
