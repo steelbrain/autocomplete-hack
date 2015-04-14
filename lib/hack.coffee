@@ -11,7 +11,7 @@ module.exports =
   exec:(Command, CWD)->
     return new Promise (Resolve, Reject)=>
       if @config.type is 'remote'
-        CWD = @config.remoteDir + Path.sep + Path.relative(atom.project.getPaths()[0], CWD).replace(Path.sep, '/');
+        CWD = @config.remoteDir + '/' + Path.relative(atom.project.getPaths()[0], CWD).replace(Path.sep, '/');
         @SSH.exec(Command, {cwd: CWD}).then Resolve
       else
         CP.exec(Command, {cwd: CWD}, (error, stdout, stderr)->
