@@ -12,9 +12,11 @@ module.exports =
       selector: '.source.cpp, .source.hack, .source.cpp'
       disableForSelector: '.comment'
       getPrefix:(editor, bufferPosition)->
-        regex = /(?!(\:){2})(\:)*[\$\w0-9_-]+$/
+        regex = /::([\$\w0-9_-]+)|(:[\$\w0-9_-]+)|([\$\w0-9_-]+)$/
         line = editor.getTextInRange([[bufferPosition.row, 0], bufferPosition])
-        line.match(regex)?[0] or ''
+        match = line.match regex
+        return '' unless match
+        return match[3] || match[2] || match[1] || match[0]
       getSuggestions: ({editor, bufferPosition, scopeDescriptor}) ->
         return [] unless Hack.config.status
         prefix = Provider.getPrefix editor, bufferPosition
