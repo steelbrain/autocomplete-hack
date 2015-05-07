@@ -12,7 +12,7 @@ module.exports =
       selector: '.source.cpp, .source.hack, .source.cpp'
       disableForSelector: '.comment'
       getPrefix:(editor, bufferPosition)->
-        regex = /::([\$\w0-9_-]+)|(:[\$\w0-9_-]+)|([\$\w0-9_-]+)$/
+        regex = /::([\$\w0-9_-]+)$|(:[\$\w0-9_-]+)$|([\$\w0-9_-]+)$/
         line = editor.getTextInRange([[bufferPosition.row, 0], bufferPosition])
         match = line.match regex
         return '' unless match
