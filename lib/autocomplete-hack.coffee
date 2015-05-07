@@ -7,13 +7,17 @@ module.exports =
     Hack = require('./hack')
     if typeof atom.packages.getLoadedPackage("autocomplete-plus") is 'undefined'
       return Hack.showError("autocomplete-plus Package not found, but is required for to provide autocomplete.")
-    Hack.init();
+    Hack.init()
     Provider =
       selector: '.source.cpp, .source.hack, .source.cpp'
       disableForSelector: '.comment'
-
-      getSuggestions: ({editor, bufferPosition, scopeDescriptor, prefix}) ->
+      getPrefix:(editor, bufferPosition)->
+        regex = /(?!(\:){2})(\:)*[\$\w0-9_-]+$/
+        line = editor.getTextInRange([[bufferPosition.row, 0], bufferPosition])
+        line.match(regex)?[0] or ''
+      getSuggestions: ({editor, bufferPosition, scopeDescriptor}) ->
         return [] unless Hack.config.status
+        prefix = Provider.getPrefix editor, bufferPosition
         Buffer = editor.getBuffer()
         Text = Buffer.getText()
         Index = Buffer.characterIndexForPosition(bufferPosition)
@@ -36,6 +40,7 @@ module.exports =
                 type: Type
                 text: Text
                 leftLabel: Label
+                replacementPrefix: prefix
                 score: prefix.length > 0 and Text.score(prefix)
               }
             )
