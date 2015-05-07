@@ -5,9 +5,15 @@ module.exports =
   config: type:'local', status:true
   SSH: null
   showError:(Message)->
-    atom.notifications.addError("[Hack] #{Message}", {dismissable: true})
+    Notification = atom.notifications.addError("[Hack] #{Message}", {dismissable: true})
+    setTimeout ->
+      Notification.dismiss()
+    , 5000
   showSuccess:(Message)->
-    atom.notifications.addSuccess("[Hack] #{Message}", {dismissable: true})
+    Notification = atom.notifications.addSuccess("[Hack] #{Message}", {dismissable: true})
+    setTimeout ->
+      Notification.dismiss()
+    , 5000
   exec:(Command, CWD)->
     return new Promise (Resolve, Reject)=>
       if @config.type is 'remote'
