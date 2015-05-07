@@ -1,12 +1,12 @@
 require 'string_score'
+Hack = require('./hack')
 
 module.exports =
   activate:->
-  provide:->
-    Path = require('path')
-    Hack = require('./hack')
     if typeof atom.packages.getLoadedPackage("autocomplete-plus") is 'undefined'
       return Hack.showError("autocomplete-plus Package not found, but is required for to provide autocomplete.")
+  provide:->
+    Path = require('path')
     Hack.init()
     Provider =
       selector: '.source.cpp, .source.hack, .source.cpp'
