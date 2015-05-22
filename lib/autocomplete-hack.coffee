@@ -9,7 +9,7 @@ module.exports =
     Path = require('path')
     Hack.init()
     Provider =
-      selector: '.source.cpp, .source.hack, .source.cpp'
+      selector: '.source.cpp, .source.hack, .source.php'
       disableForSelector: '.comment'
       getPrefix:(editor, bufferPosition)->
         regex = /::([\$\w0-9_-]+)$|\)\s*:(\w+)$|(:[\$\w0-9_-]+)$|([\$\w0-9_-]+)$/
