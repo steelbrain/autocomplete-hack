@@ -10,7 +10,7 @@ apm install autocomplete-hack
 ```
 
 #### Screenshot
-![Screenshot](https://cloud.githubusercontent.com/assets/4278113/7103742/d5a47420-e06b-11e4-90c3-6fa94460b238.png)
+![Screenshot](https://cloud.githubusercontent.com/assets/4278113/7766989/a91bb544-0023-11e5-8258-e85b96c07f04.png)
 
 #### License
 This Project is licensed under the terms of MIT License. See the LICENSE file for more info.
