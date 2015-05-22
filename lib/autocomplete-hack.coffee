@@ -11,6 +11,30 @@ module.exports =
     Provider =
       selector: '.source.cpp, .source.hack, .source.php'
       disableForSelector: '.comment'
+      Map:{
+        int: 'Integer'
+        float: 'Float'
+        string: 'String'
+        bool: 'Boolean'
+        array: 'Array'
+        num: 'Number'
+        mixed: 'Mixed'
+      }
+      getType:(Text, Label)->
+        leftLabel = Label
+        Type = Label
+        if Label is 'class' or Text is '$this'
+          Type = 'class'
+          leftLabel = 'Class'
+        else if typeof Provider.Map[Label] isnt 'undefined'
+          Type = if Text.substr(0,1) is '$' then 'variable' else 'property'
+          leftLabel = Provider.Map[Label]
+        else
+          Type = if Text.substr(0,1) is '$' then 'variable' else 'property'
+          leftLabel = /(\w+)/.exec(Label)[0] || ''
+        if leftLabel is 'function'
+          Type = 'function'
+        return {Type, leftLabel}
       getPrefix:(editor, bufferPosition)->
         regex = /::([\$\w0-9_-]+)$|\)\s*:(\w+)$|(:[\$\w0-9_-]+)$|([\$\w0-9_-]+)$/
         line = editor.getTextInRange([[bufferPosition.row, 0], bufferPosition])
@@ -28,20 +52,17 @@ module.exports =
         new Promise (Resolve) ->
           Hack.exec(Command, Path.dirname(editor.getPath())).then (Result)->
             Result = Result.stdout.split("\n").filter((e) -> e)
+            console.log Result
             ToReturn = Result.map((Entry)->
               Entry = Entry.split(' ')
               Text = Entry[0]
               Label = Entry.slice(1).join(' ')
-              if Text.substr(0,1) is '$'
-                Type = 'variable'
-              else if Text is 'class' and Label is 'string'
-                Type = 'class'
-              else
-                Type = 'property'
+              {leftLabel, Type} = Provider.getType(Text, Label)
               return {
                 type: Type
                 text: Text
-                leftLabel: Label
+                leftLabel: leftLabel
+                description: Label
                 replacementPrefix: prefix
                 score: prefix.length > 0 and Text.score(prefix)
               }
