@@ -52,7 +52,6 @@ module.exports =
         new Promise (Resolve) ->
           Hack.exec(Command, Path.dirname(editor.getPath())).then (Result)->
             Result = Result.stdout.split("\n").filter((e) -> e)
-            console.log Result
             ToReturn = Result.map((Entry)->
               Entry = Entry.split(' ')
               Text = Entry[0]
