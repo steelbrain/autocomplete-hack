@@ -9,6 +9,8 @@ module.exports =
     Path = require('path')
     Hack.init()
     Provider =
+      inclusionPriority: 100
+      excludeLowerPriority: true # To suppress the html autocompleter
       selector: '.source.cpp, .source.hack, .source.php'
       disableForSelector: '.comment'
       Map:{
