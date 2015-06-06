@@ -8,6 +8,7 @@ module.exports =
   provide:->
     Path = require('path')
     Hack.init()
+    ArgumentsRegex = /function[ \w]*\((.*?)\)/
     Provider =
       inclusionPriority: 100
       excludeLowerPriority: true # To suppress the html autocompleter
@@ -59,14 +60,30 @@ module.exports =
               Text = Entry[0]
               Label = Entry.slice(1).join(' ')
               {leftLabel, Type} = Provider.getType(Text, Label)
-              return {
+              EntryToReturn = {
                 type: Type
-                text: Text
                 leftLabel: leftLabel
                 description: Label
                 replacementPrefix: prefix
                 score: prefix.length > 0 and Text.score(prefix)
               }
+              if Type is 'function'
+                Arguments = ArgumentsRegex.exec Label
+                if Arguments and Arguments[1] and Arguments[1].length
+                  Snippet = []
+                  ExtractionRegexp = /(\$\w+)/g
+                  Num = 0
+                  while (Result = ExtractionRegexp.exec(Arguments[1])) isnt null
+                    ++Num
+                    Result = Result[1]
+                    Snippet.push "${#{Num}:#{Result}}"
+                  Snippet = Text + "(" + Snippet.join(", ") + ")"
+                  EntryToReturn.snippet = Snippet
+                else
+                  EntryToReturn.text = Text
+              else
+                EntryToReturn.text = Text
+              return EntryToReturn
             )
             ToReturn.sort (a,b)=>
               b.score - a.score
