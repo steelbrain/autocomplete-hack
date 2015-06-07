@@ -8,7 +8,7 @@ module.exports =
   provide:->
     Path = require('path')
     Hack.init()
-    ArgumentsRegex = /function[ \w]*\((.*?)\)/
+    ArgumentsRegex = /function.*?\((.*?)\)/
     Provider =
       inclusionPriority: 100
       excludeLowerPriority: true # To suppress the html autocompleter
@@ -68,12 +68,12 @@ module.exports =
                 score: prefix.length > 0 and Text.score(prefix)
               }
               if Type is 'function'
-                Arguments = ArgumentsRegex.exec Label
-                if Arguments and Arguments[1] and Arguments[1].length
+                RegexResult = ArgumentsRegex.exec Label
+                if RegexResult and RegexResult[1] and RegexResult[1].length
                   Snippet = []
                   ExtractionRegexp = /(\$\w+)/g
                   Num = 0
-                  while (Result = ExtractionRegexp.exec(Arguments[1])) isnt null
+                  while (Result = ExtractionRegexp.exec(RegexResult[1])) isnt null
                     ++Num
                     Result = Result[1]
                     Snippet.push "${#{Num}:#{Result}}"
