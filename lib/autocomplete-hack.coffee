@@ -80,7 +80,7 @@ module.exports =
                   Snippet = Text + "(" + Snippet.join(", ") + ")"
                   EntryToReturn.snippet = Snippet
                 else
-                  EntryToReturn.text = Text
+                  EntryToReturn.text = Text + "()"
               else
                 EntryToReturn.text = Text
               return EntryToReturn
