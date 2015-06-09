@@ -1,5 +1,4 @@
 require 'string_score'
-Hack = require('./hack')
 
 module.exports =
   Hack: null
@@ -12,7 +11,6 @@ module.exports =
     @Hack = Hack
   provide:->
     Path = require('path')
-    Hack.init()
     ArgumentsRegex = /function.*?\((.*?)\)/
     Provider =
       inclusionPriority: 100
@@ -49,16 +47,16 @@ module.exports =
         match = line.match regex
         return '' unless match
         return match[4] || match[3] || match[2] || match[1] || match[0]
-      getSuggestions: ({editor, bufferPosition, scopeDescriptor}) ->
-        return [] unless Hack.config.status
+      getSuggestions: ({editor, bufferPosition, scopeDescriptor}) =>
+        return [] unless @Hack or @Hack.config.status
         prefix = Provider.getPrefix editor, bufferPosition
         Buffer = editor.getBuffer()
         Text = Buffer.getText()
         Index = Buffer.characterIndexForPosition(bufferPosition)
         Text = Text.substr(0, Index) + 'AUTO332' + Text.substr(Index)
         Command = "hh_client --auto-complete <<'EOFAUTOCOMPLETE'\n" + Text + "\nEOFAUTOCOMPLETE"
-        new Promise (Resolve) ->
-          Hack.exec(Command, Path.dirname(editor.getPath())).then (Result)->
+        new Promise (Resolve) =>
+          @Hack.exec(Command, Path.dirname(editor.getPath())).then (Result)->
             Result = Result.stdout.split("\n").filter((e) -> e)
             ToReturn = Result.map((Entry)->
               Entry = Entry.split(' ')
