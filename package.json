@@ -22,5 +22,12 @@
         "2.0.0": "provide"
       }
     }
+  },
+  "consumedServices": {
+    "atom-hack":{
+      "versions": {
+        "0.1.0": "consumeHack"
+      }
+    }
   }
 }
