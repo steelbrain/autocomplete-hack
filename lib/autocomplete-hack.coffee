@@ -4,7 +4,9 @@ Hack = require('./hack')
 module.exports =
   activate:->
     if typeof atom.packages.getLoadedPackage("autocomplete-plus") is 'undefined'
-      return Hack.showError("autocomplete-plus Package not found, but is required for to provide autocomplete.")
+      return atom.notifications.addError "[Hack] autocomplete-plus Package not found, but is required for autocomplete.", dismissable: true
+    else if typeof atom.packages.getLoadedPackages("atom-hack") is 'undefined'
+      return atom.notifications.addError "[Hack] atom-hack Package not found, but is required for autocomplete", dismissable: true
   provide:->
     Path = require('path')
     Hack.init()
