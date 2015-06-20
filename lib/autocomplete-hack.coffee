@@ -11,7 +11,7 @@ module.exports =
     @Hack = Hack
   provide:->
     Path = require('path')
-    ArgumentsRegex = /function.*?\((.*?)\)/
+    ArgumentsRegex = /function.*?\((.*)\).*\)/
     Provider =
       inclusionPriority: 100
       excludeLowerPriority: true # To suppress the html autocompleter
