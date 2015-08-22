@@ -3,9 +3,7 @@ require 'string_score'
 module.exports =
   Hack: null
   activate:->
-    if typeof atom.packages.getLoadedPackage("autocomplete-plus") is 'undefined'
-      return atom.notifications.addError "[Hack] autocomplete-plus Package not found, but is required for autocomplete.", dismissable: true
-    else if typeof atom.packages.getLoadedPackages("atom-hack") is 'undefined'
+    if typeof atom.packages.getLoadedPackages("atom-hack") is 'undefined'
       return atom.notifications.addError "[Hack] atom-hack Package not found, but is required for autocomplete", dismissable: true
   consumeHack: (Hack)->
     @Hack = Hack
