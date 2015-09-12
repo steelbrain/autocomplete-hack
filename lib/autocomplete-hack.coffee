@@ -78,7 +78,7 @@ module.exports =
                     ++Num
                     Result = Result[1]
                     Snippet.push "${#{Num}:#{Result}}"
-                  Snippet = Text + "(" + Snippet.join(", ") + ")"
+                  Snippet = Text + "(" + Snippet.join(", ") + ")${#{++Num}}"
                   EntryToReturn.snippet = Snippet
                 else
                   EntryToReturn.text = Text + "()"
