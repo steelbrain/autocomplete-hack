@@ -1,6 +1,6 @@
 {
   "name": "autocomplete-hack",
-  "main": "./lib/autocomplete-hack",
+  "main": "./lib/main",
   "version": "1.0.3",
   "description": "HackLang AutoCompletion for Atom Editor.",
   "repository": "https://github.com/steelbrain/autocomplete-hack",
@@ -13,8 +13,10 @@
     "atom": ">=0.188.0 <2.0.0"
   },
   "dependencies": {
+    "atom-package-deps": "^2.1.3",
     "string_score": "latest"
   },
+  "package-deps": ["linter"],
   "providedServices": {
     "autocomplete.provider": {
       "versions": {
