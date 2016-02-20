@@ -10,10 +10,10 @@
   },
   "license": "MIT",
   "engines": {
-    "atom": ">=0.188.0 <2.0.0"
+    "atom": ">=1.0.0 <2.0.0"
   },
   "dependencies": {
-    "atom-package-deps": "^3.0.5",
+    "atom-package-deps": "^4.0.1",
     "sb-string_score": "^0.1.20"
   },
   "package-deps": [
