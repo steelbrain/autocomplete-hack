@@ -1,16 +1,16 @@
 {
   "name": "autocomplete-hack",
-  "main": "./lib/main.js",
+  "main": "./lib/index.js",
   "version": "2.1.5",
   "description": "HackLang AutoCompletion for Atom Editor.",
   "repository": "https://github.com/steelbrain/autocomplete-hack",
-  "author": {
-    "username": "steelbrain",
-    "email": "aneesiqbalbhatti@gmail.com"
-  },
+  "author": "steelbrain",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
+  },
+  "scripts": {
+    "test": "(flow check) && (eslint . )"
   },
   "dependencies": {
     "atom-autocomplete": "^1.0.0",
@@ -30,8 +30,12 @@
   "consumedServices": {
     "atom-hack": {
       "versions": {
-        "0.1.0": "consumeHack"
+        "1.0.0": "consumeDelegateRegistry"
       }
     }
+  },
+  "devDependencies": {
+    "eslint-config-steelbrain": "^1.0.4",
+    "flow-bin": "^0.32.0"
   }
 }
