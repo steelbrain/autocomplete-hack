@@ -30,7 +30,7 @@
   "consumedServices": {
     "atom-hack": {
       "versions": {
-        "0.1.0": "consumeHack"
+        "1.0.0": "consumeDelegateRegistry"
       }
     }
   },
