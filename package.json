@@ -1,7 +1,7 @@
 {
   "name": "autocomplete-hack",
   "main": "./lib/index.js",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "HackLang AutoCompletion for Atom Editor.",
   "repository": "https://github.com/steelbrain/autocomplete-hack",
   "author": "steelbrain",
