@@ -1,5 +1,7 @@
 # AutoComplete-Hack
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/steelbrain/autocomplete-hack.svg)](https://greenkeeper.io/)
+
 HackLang AutoCompletion for Atom Editor. This Plugin was originally a part of [Atom-Hack][Atom-Hack]. and Uses the same configuration file. (Check out that repo for more info about Configuration)
 
 AutoComplete-Hack supports autocomplete over the ssh (Atom-Hack did not).
