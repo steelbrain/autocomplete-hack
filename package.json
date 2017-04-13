@@ -13,8 +13,8 @@
     "test": "(flow check) && (eslint . )"
   },
   "devDependencies": {
-    "eslint-config-steelbrain": "^2.0.0",
-    "flow-bin": "^0.42.0"
+    "eslint-config-steelbrain": "^3.0.0",
+    "flow-bin": "^0.44.0"
   },
   "dependencies": {
     "atom-autocomplete": "^1.0.0",
@@ -39,7 +39,7 @@
     }
   },
   "devDependencies": {
-    "eslint-config-steelbrain": "^2.0.0",
-    "flow-bin": "^0.42.0"
+    "eslint-config-steelbrain": "^3.0.0",
+    "flow-bin": "^0.44.0"
   }
 }
