@@ -37,9 +37,5 @@
         "1.0.0": "consumeDelegateRegistry"
       }
     }
-  },
-  "devDependencies": {
-    "eslint-config-steelbrain": "^3.0.0",
-    "flow-bin": "^0.44.0"
   }
 }
