@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "eslint-config-steelbrain": "^3.0.0",
-    "flow-bin": "^0.44.0"
+    "flow-bin": "^0.45.0"
   },
   "dependencies": {
     "atom-autocomplete": "^1.0.0",
